@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\MovieCollection;
+use App\Http\Resources\MovieResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/genre', function (Request $request) {
     $genre = $request->get('genre');
 
-    dd(
-        \App\Models\Movie::with('genres')->whereHas('genres', function (\Illuminate\Database\Eloquent\Builder $query) use ($genre) {
-            $query->where('title', $genre);
-        })->get()
+    return response()->json(
+        MovieResource::collection(
+            \App\Models\Movie::with('genres')
+                ->whereHas('genres', fn (\Illuminate\Database\Eloquent\Builder $query) => $query->where('title', $genre))
+                ->get()
+        )
     );
 });
