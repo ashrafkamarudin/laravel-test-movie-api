@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
 
         $movies = collect([
             [
+                'title' => 'The Irishman',
+                'description' => 'I dont know',
+                'genres' => [1]
+            ],
+            [
                 'title' => 'Parasite',
                 'description' => 'A poor family, the Kims, con their way into becoming the servants of a rich family, the Parks. But their easy life gets complicated when their deception is threatened with exposure.',
                 'genres' => [1]
@@ -46,7 +51,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Genre::insert([
-            ['title' => 'comedy']
+            ['title' => 'comedy'],
+            ['title' => 'action'],
+            ['title' => 'adventure']
         ]);
 
         $movies->each(fn ($parameters) => $createNewMovieAction->create($parameters));
