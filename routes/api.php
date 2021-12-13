@@ -31,3 +31,15 @@ Route::get('/genre', function (Request $request) {
         )
     );
 });
+
+Route::get('/genre', function (Request $request) {
+    $genre = $request->get('genre');
+
+    return response()->json(
+        MovieResource::collection(
+            \App\Models\Movie::with('genres')
+                ->whereHas('genres', fn (\Illuminate\Database\Eloquent\Builder $query) => $query->where('title', $genre))
+                ->get()
+        )
+    );
+});
