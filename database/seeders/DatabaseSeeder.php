@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Performer;
 use App\Models\Theatre;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -102,6 +103,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $timeslots->each(fn ($parameters) => $createNewTimeslot->create($parameters));
+
+        $alPacino = Performer::create([
+            'name' => 'Al Pacino'
+        ]);
+
+        Movie::whereTitle('The Irishman')->first()->performers()->attach($alPacino);
     }
 }
 

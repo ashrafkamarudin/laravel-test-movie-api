@@ -22,4 +22,9 @@ class Movie extends Model
     {
         return $this->hasMany(Timeslot::class);
     }
+
+    public function performers(): BelongsToMany
+    {
+        return $this->belongsToMany(Performer::class);
+    }
 }
