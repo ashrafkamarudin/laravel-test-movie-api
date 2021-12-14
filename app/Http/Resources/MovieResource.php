@@ -16,9 +16,9 @@ class MovieResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'Movie_ID' => $this->id,
-            'Title' => $this->title,
-            'Genre' => implode(' ', $this->genres->map(fn ($genre) => Str::title($genre->title))->toArray()),
+            'Movie_ID'  => $this->id,
+            'Title'     => $this->title,
+            'Genre'     => implode(' ', $this->genres->map(fn ($genre) => Str::title($genre->title))->toArray()),
             'Description' => $this->description,
         ];
     }

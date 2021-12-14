@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShowtimesTable extends Migration
+class CreateTimeslotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShowtimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('showtimes', function (Blueprint $table) {
+        Schema::create('timeslots', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('theatre_id')->unsigned()->index();
             $table->foreign('theatre_id')->references('id')->on('theatres')->onDelete('cascade');
@@ -33,6 +33,6 @@ class CreateShowtimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('showtimes');
+        Schema::dropIfExists('timeslots');
     }
 }

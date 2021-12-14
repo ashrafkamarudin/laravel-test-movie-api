@@ -10,8 +10,8 @@ class Theatre extends Model
 {
     use HasFactory;
 
-    public function showtimes(): HasMany
+    public function timeslots(): HasMany
     {
-        return $this->hasMany(Showtime::class);
+        return $this->hasMany(Timeslot::class);
     }
 }

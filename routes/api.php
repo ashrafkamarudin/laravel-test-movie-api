@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Resources\MovieCollection;
-use App\Http\Resources\MovieResource;
+use App\Models\Timeslot;
 use Illuminate\Http\Request;
+use App\Http\Resources\MovieResource;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\TimeslotResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,25 +22,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/genre', function (Request $request) {
-    $genre = $request->get('genre');
 
-    return response()->json(
-        MovieResource::collection(
-            \App\Models\Movie::with('genres')
-                ->whereHas('genres', fn (\Illuminate\Database\Eloquent\Builder $query) => $query->where('title', $genre))
-                ->get()
-        )
+    // validate genre
+
+    return MovieResource::collection(
+        \App\Models\Movie::with('genres')
+            ->whereHas('genres', fn (\Illuminate\Database\Eloquent\Builder $query) => $query->where('title', $request->genre))
+            ->get()
     );
 });
 
-Route::get('/genre', function (Request $request) {
-    $genre = $request->get('genre');
+Route::get('/timeslot', function (Request $request) {
+    
+    // validate theatre_name, time_start, time_end
 
-    return response()->json(
-        MovieResource::collection(
-            \App\Models\Movie::with('genres')
-                ->whereHas('genres', fn (\Illuminate\Database\Eloquent\Builder $query) => $query->where('title', $genre))
-                ->get()
-        )
+    return TimeslotResource::collection(
+        Timeslot::whereBetween('start_time', [$request->time_start, $request->time_end])
+            ->with('movie')
+            ->get()
     );
 });
