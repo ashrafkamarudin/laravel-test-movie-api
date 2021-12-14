@@ -12,7 +12,8 @@ class CreateNewMovie {
         return Movie::create([
             'title'         => $array['title'],
             'description'   => $array['description'],
-            'duration'      => $array['duration']
+            'duration'      => $array['duration'],
+            'releaseDate'   => $array['releaseDate']
         ])->genres()->sync([1]);
     }
 }

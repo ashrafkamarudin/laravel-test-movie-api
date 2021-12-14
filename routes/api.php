@@ -60,10 +60,25 @@ Route::get('/specific_movie_theater', function (Request $request) {
 
 Route::get('/search_performer', function (Request $request) {
     
-    // validate theatre_name, d_date
+    // validate performer_name
 
     return PerformerMovieResource::collection(
         Movie::whereHas('performers', fn (Builder $query) => $query->where('name', $request->performer_name))
             ->get()
     );
 });
+
+// add rating 
+// should i use event sourcing ?
+
+Route::get('/new_movies', function (Request $request) {
+    
+    // validate r_date
+
+    return PerformerMovieResource::collection(
+        Movie::whereDate('releaseDate', '>=', $request->r_date)
+            ->get()
+    );
+});
+
+// add movie
