@@ -16,13 +16,14 @@ class CreateTimeslotTable extends Migration
         Schema::create('timeslots', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('theatre_id')->unsigned()->index();
-            $table->foreign('theatre_id')->references('id')->on('theatres')->onDelete('cascade');
             $table->bigInteger('movie_id')->unsigned()->index();
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->smallInteger('room_no');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->timestamps();
+
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('theatre_id')->references('id')->on('theatres')->onDelete('cascade');
         });
     }
 
