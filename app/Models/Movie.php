@@ -13,6 +13,17 @@ class Movie extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class);

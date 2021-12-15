@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\CreateNewMovie;
 use App\Models\Timeslot;
 use Illuminate\Http\Request;
 use App\Http\Resources\MovieResource;
@@ -82,3 +83,5 @@ Route::get('/new_movies', function (Request $request) {
 });
 
 // add movie
+
+Route::post('/add_movie', fn (Request $request, CreateNewMovie $createNewMovie) => $createNewMovie->create($request->toArray()));

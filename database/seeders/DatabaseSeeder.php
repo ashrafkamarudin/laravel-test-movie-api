@@ -29,14 +29,17 @@ class DatabaseSeeder extends Seeder
             ['name' => 'ABC movies']
         ]);
 
+        Performer::insert([
+            ['name' => 'Al Pacino'],
+            ['name' => 'Gemma Arterton'],
+            ['name' => 'Matthew Goode'],
+            ['name' => 'Ralph Fiennes']
+        ]);
+
     
         $this->call(MoviesSeeder::class);
         $this->call(TimeslotsSeeder::class);
 
-        $alPacino = Performer::create([
-            'name' => 'Al Pacino'
-        ]);
-
-        Movie::whereTitle('The Irishman')->first()->performers()->attach($alPacino);
+        Movie::whereTitle('The Irishman')->first()->performers()->attach(Performer::whereName('Al Pacino')->first());
     }
 }
