@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
+use App\Models\Genre;
 use Carbon\CarbonInterval;
 use App\Actions\CreateNewMovie;
 use Illuminate\Database\Seeder;
@@ -62,7 +63,11 @@ class MoviesSeeder extends Seeder
             ],
         ];
 
-        collect($movies)
-            ->each(fn ($parameters) => $createNewMovieAction->create($parameters));
+        collect($movies)->each(fn ($parameters) => tap(
+            $createNewMovieAction->shouldValidate()->create($parameters), 
+            fn ($movie) => $movie->genres()->sync(
+                Genre::whereIn('title', $parameters['genres'])->get(['id'])->pluck('id')
+            )
+        ));
     }
 }
