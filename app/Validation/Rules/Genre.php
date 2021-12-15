@@ -11,6 +11,6 @@ class Genre
 
     public static function default()
     {
-        return ['bail', 'required'];
+        return ['bail', 'required', 'exists:genres,title'];
     }
 }

@@ -11,6 +11,6 @@ class Performer
 
     public static function name()
     {
-        return ['bail', 'required'];
+        return ['bail', 'required', 'exists:performers,name'];
     }
 }

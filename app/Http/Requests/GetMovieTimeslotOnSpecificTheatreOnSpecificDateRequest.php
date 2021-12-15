@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Validation\Rules\Date;
-use App\Validation\Rules\Theatre;
+use App\Validation\Rules\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest extends FormRequest
@@ -26,7 +26,7 @@ class GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest extends FormRequest
     public function rules()
     {
         return [
-            'theatre_name' => Theatre::name(),
+            'theatre_name' => Str::default(),
             'd_date' => Date::default()
         ];
     }

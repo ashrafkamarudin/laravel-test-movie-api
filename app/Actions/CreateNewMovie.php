@@ -4,8 +4,7 @@ namespace App\Actions;
 
 use App\Models\Movie;
 use App\Validation\Rules\Date;
-use App\Validation\Rules\Description;
-use App\Validation\Rules\Title;
+use App\Validation\Rules\Str;
 use Illuminate\Support\Facades\Validator;
 
 class CreateNewMovie {
@@ -22,8 +21,8 @@ class CreateNewMovie {
     public static function validationRules(): array
     {
         return [
-            'title'         => Title::default(),
-            'description'   => Description::default(),
+            'title'         => Str::default(),
+            'description'   => Str::default(),
             'mpaa_rating'   => ['bail'],
             'language'      => ['bail'],
             'duration'      => ['bail', 'required'],

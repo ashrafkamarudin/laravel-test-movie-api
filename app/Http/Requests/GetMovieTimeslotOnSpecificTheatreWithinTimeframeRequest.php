@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\Rules\Date;
-use App\Validation\Rules\Theatre;
+use App\Validation\Rules\DateTime;
+use App\Validation\Rules\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GetMovieTimeslotOnSpecificTheatreWithinTimeframeRequest extends FormRequest
@@ -26,9 +26,9 @@ class GetMovieTimeslotOnSpecificTheatreWithinTimeframeRequest extends FormReques
     public function rules()
     {
         return [
-            'theatre_name' => Theatre::name(),
-            'time_start'    => Date::default(),
-            'time_end'  => Date::default(),
+            'theatre_name' => Str::default(),
+            'time_start'   => DateTime::default(),
+            'time_end'     => DateTime::afterOrEqual('time_start'),
         ];
     }
 

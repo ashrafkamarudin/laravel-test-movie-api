@@ -2,11 +2,13 @@
 
 namespace App\Validation\Rules;
 
-class Date
+class DateTime
 {
+    const DEFAULT_FORMAT = 'Y-m-d H:i:s';
+
     public static function default()
     {
-        return ['bail', 'required', 'date'];
+        return ['bail', 'required', 'date_format:' . self::DEFAULT_FORMAT];
     }
 
     public static function afterOrEqual(string $date)

@@ -2,10 +2,10 @@
 
 namespace App\Validation\Rules;
 
-class Description
+class Str
 {
     public static function default()
     {
-        return ['bail', 'required'];
+        return ['bail', 'required', 'string', 'min:5'];
     }
 }
