@@ -76,4 +76,11 @@ Route::post('/add_movie', function (CreateMovieRequest $request, CreateNewMovie 
     $movie->performers()->sync(
         Performer::whereIn('name', $request->performers)->get(['id'])->pluck('id')
     );
+
+    if ($movie) {
+        return response()->json([
+            'message' => sprintf("Successfully added movie %s with Movie_ID %d", $movie->title, $movie->id),
+            'success' => true
+        ]);
+    }
 });
