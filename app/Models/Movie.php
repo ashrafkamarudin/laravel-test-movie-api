@@ -43,4 +43,9 @@ class Movie extends Model
     {
         return $this->hasMany(Rating::class);
     }
+
+    public function getOverallRatingAttribute()
+    {
+        return $this->ratings()->avg('rating');
+    }
 }

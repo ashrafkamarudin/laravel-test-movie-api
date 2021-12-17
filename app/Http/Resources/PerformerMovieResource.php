@@ -16,7 +16,7 @@ class PerformerMovieResource extends JsonResource
     {
         return [
             'Movie_ID'  => $this->id,
-            // 'Overall_rating'  => $this->id, todo
+            'Overall_rating'  => number_format($this->overall_rating),
             'Title'     => $this->title,
             'Description' => $this->description,
         ];
