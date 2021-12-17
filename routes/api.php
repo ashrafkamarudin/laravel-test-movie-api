@@ -1,23 +1,24 @@
 <?php
 
-use App\Models\Genre;
-use App\Models\Movie;
-use App\Models\Timeslot;
-use App\Models\Performer;
 use Illuminate\Http\Request;
-use App\Actions\CreateNewMovie;
-use App\Http\Resources\MovieResource;
-use Illuminate\Support\Facades\Route;
-use App\Http\Resources\TimeslotResource;
-use App\Http\Requests\CreateMovieRequest;
 use Illuminate\Database\Eloquent\Builder;
-use App\Http\Requests\GetMovieByGenreRequest;
-use App\Http\Resources\PerformerMovieResource;
-use App\Http\Requests\GetMovieBySpecificPerformer;
-use App\Http\Requests\GetMovieReleaseAfterSpecificDateRequest;
-use App\Http\Requests\GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest;
-use App\Http\Requests\GetMovieTimeslotOnSpecificTheatreWithinTimeframeRequest;
-use App\Http\Requests\GiveRatingRequest;
+use App\Models\{Genre, Movie, Performer, Timeslot};
+use App\Actions\CreateNewMovie;
+
+use App\Http\Resources\{
+    MovieResource,
+    TimeslotResource,
+    PerformerMovieResource
+};
+
+use App\Http\Requests\{
+    CreateMovieRequest,
+    GetMovieBySpecificPerformer,
+    GetMovieReleaseAfterSpecificDateRequest,
+    GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest,
+    GetMovieTimeslotOnSpecificTheatreWithinTimeframeRequest,
+    GiveRatingRequest
+};
 
 /*
 |--------------------------------------------------------------------------

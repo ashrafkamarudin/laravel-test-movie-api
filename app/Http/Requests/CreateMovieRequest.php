@@ -3,8 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Actions\CreateNewMovie;
-use App\Validation\Rules\Genre;
-use App\Validation\Rules\Performer;
+use App\Validation\Rules\{Genre , Performer};
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateMovieRequest extends FormRequest

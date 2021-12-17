@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Movie;
-use App\Models\Theatre;
+use App\Models\{Movie, Theatre};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

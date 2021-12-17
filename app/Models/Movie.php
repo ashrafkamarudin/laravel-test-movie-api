@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Genre;
-use App\Models\Timeslot;
+use App\Models\{Genre, Timeslot};
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsToMany};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Movie extends Model
 {

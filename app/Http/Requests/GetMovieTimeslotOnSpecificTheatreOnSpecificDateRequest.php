@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\Rules\Date;
-use App\Validation\Rules\Str;
+use App\Validation\Rules\{Date, Str};
 use Illuminate\Foundation\Http\FormRequest;
 
 class GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest extends FormRequest

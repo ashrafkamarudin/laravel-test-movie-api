@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Movie;
 use App\Validation\Rules\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
