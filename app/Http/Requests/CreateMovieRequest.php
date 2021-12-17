@@ -26,6 +26,7 @@ class CreateMovieRequest extends FormRequest
      */
     public function rules()
     {
+        info($this->all());
         return [
             ...CreateNewMovie::validationRules(),
             'genres'          => Genre::list(),

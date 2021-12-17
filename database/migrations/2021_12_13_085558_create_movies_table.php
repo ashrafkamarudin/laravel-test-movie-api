@@ -19,6 +19,7 @@ class CreateMoviesTable extends Migration
             $table->string('description')->nullable();
             $table->string('mpaa_rating')->nullable();
             $table->string('language')->default('English');
+            $table->string('director')->nullable();
             $table->integer('duration');
             $table->date('releaseDate');
             $table->timestamps();

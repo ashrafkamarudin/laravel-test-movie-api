@@ -17,7 +17,7 @@ class Movie extends Model
      * The attributes that are not mass assignable.
      *
      * @var array
-     */
+    */
     protected $guarded = [
         'id',
         'created_at',
@@ -37,5 +37,10 @@ class Movie extends Model
     public function performers(): BelongsToMany
     {
         return $this->belongsToMany(Performer::class);
+    }
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
     }
 }

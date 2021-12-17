@@ -17,6 +17,7 @@ use App\Http\Requests\GetMovieBySpecificPerformer;
 use App\Http\Requests\GetMovieReleaseAfterSpecificDateRequest;
 use App\Http\Requests\GetMovieTimeslotOnSpecificTheatreOnSpecificDateRequest;
 use App\Http\Requests\GetMovieTimeslotOnSpecificTheatreWithinTimeframeRequest;
+use App\Http\Requests\GiveRatingRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,19 @@ Route::get('/search_performer', fn (GetMovieBySpecificPerformer $request) => Per
 
 // add rating 
 // should i use event sourcing ?
+
+Route::post('/give_rating', function (GiveRatingRequest $request) {
+    $rating = Movie::whereTitle($request->movie_title)->first()->ratings()->create(
+        $request->except(['movie_title'])
+    );
+
+    if ($rating) {
+        return response()->json([
+            'message' => sprintf("Successfully added review for %s by user: %s", $request->movie_title, $request->username),
+            'success' => true
+        ]);
+    }
+});
 
 Route::get('/new_movies', fn (GetMovieReleaseAfterSpecificDateRequest $request) => PerformerMovieResource::collection(
     Movie::whereDate('releaseDate', '>=', $request->r_date)->get()
